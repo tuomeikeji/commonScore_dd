@@ -24,7 +24,7 @@ Page({
   },
   onShow() {
    dd.httpRequest({
-      url: app.globalData.domain + '/Leveltitle/LevelTitleController/' + this.data.levelId + '/' +this.data.shenQingFangShi,
+      url: app.globalData.domain + '/Leveltitle/LevelTitleController/' + this.data.levelId,
       method: 'POST',
       dataType: 'json',
       data:{
@@ -71,7 +71,7 @@ Page({
     }
 
     dd.httpRequest({
-      url: app.globalData.domain + '/Leveltitle/servehotselectiveajax/' + this.data.levelId +'/' + this.data.shenQingFangShi,
+      url: app.globalData.domain + '/Leveltitle/servehotselectiveajax',
       method: 'POST',
       dataType: 'json',
       headers:{'Content-Type': 'application/json;charsetset=UTF-8'},

@@ -182,6 +182,9 @@ Page({
         dd.navigateTo({ url: '../award/index' })
         break;
       case '积分抽奖':
+        // dd.navigateTo({ url: '../levelTest/index' })
+        break;
+      case '水平考核':
         dd.navigateTo({ url: '../levelTest/index' })
         break;
       case '爱心点赞':
