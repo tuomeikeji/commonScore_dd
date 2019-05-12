@@ -33,7 +33,9 @@
 
 .main .item {
   /* height: 35px; */
-  line-height: 35px;
+  padding: 10px 0;
+  line-height: 24px;
+  overflow: hidden;
 }
 
 .main .item-left {
@@ -42,6 +44,8 @@
 
 .main .item-right {
   float: right;
+  width: 75%;
+  text-align: right;
 }
 
 .main .image {

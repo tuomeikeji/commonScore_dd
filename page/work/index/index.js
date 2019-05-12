@@ -28,6 +28,10 @@ Page({
       {
         "icon": "/image/manage.png",
         "text": "管理奖扣"
+      },
+      {
+        "icon": "/image/scoreList.png",
+        "text": "奖扣日志"
       }
     ],
     // listMain: [
@@ -162,7 +166,7 @@ Page({
         break;
       case 2:
         // dd.alert({ content: '正在测试，敬请期待', buttonText: '确定' })
-        // dd.navigateTo({url: '../take/index'})
+        dd.navigateTo({url: '../leaderRewardList/index'})
         break;
       case 3:
         break;

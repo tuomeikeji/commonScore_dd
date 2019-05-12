@@ -23,7 +23,7 @@
     <view class="form-line" />
     <view class="page-section-title">审批备注</view>
     <view class="page-section-demo">
-      <textarea auto-height placeholder="输入备注信息" name="textarea" style="font-size: 14px" value="{{options.remark }}" disabled="{{true}}"/>
+      <textarea auto-height placeholder="输入备注信息" name="textarea" style="font-size: 14px" value="{{options.remark=='null'?'无':options.remark}}" disabled="{{true}}"/>
     </view>
      <view class="form-line" />
     <view class="page-section-title">* 申诉理由</view>

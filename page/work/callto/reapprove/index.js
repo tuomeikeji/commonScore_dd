@@ -25,7 +25,7 @@ Page({
   },
 
   onLoad(options) {
-    console.log(options)
+    console.log('onLoadOptions---',options)
 
     this.setData({
       options: options,
@@ -39,10 +39,12 @@ Page({
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
 
         console.log('selectComplaintPel----', res)
-        this.setData({
-          'ssuser[0]': res.data.data.user
-
-        })
+        if(res.data.data.user!=null){
+           this.setData({
+            'ssuser[0]': res.data.data.user
+          })
+        }
+       
       },
       fail: (res) => {
         console.log("httpRequestFailApps----", res)
@@ -52,6 +54,7 @@ Page({
       complete: () => {
       }
     })
+
    // 查询默认本部门审批人
     dd.httpRequest({
       url: app.globalData.domain + '/work/declareBehaviorDetail/approverPel',
@@ -74,7 +77,7 @@ Page({
     })
 
    
-
+  // 查询默认申请人
     dd.httpRequest({
       url: app.globalData.domain + '/work/selectSysUser',
       method: 'POST',
