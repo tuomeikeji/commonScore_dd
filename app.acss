@@ -118,3 +118,6 @@ button {
   -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
   transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
 }
+
+.topImage image{width: 100%;max-height: 140px;
+  box-shadow: 0 0 2px #ccc;margin-bottom: 10px;}

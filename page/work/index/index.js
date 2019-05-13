@@ -2,24 +2,7 @@ var app = getApp()
 
 Page({
   data: {
-    // listContent: [
-    //   {
-    //     "icon": "/image/nothing.png",
-    //     "text": "发布任务"
-    //   },
-    //   {
-    //     "icon": "/image/praise.png",
-    //     "text": "积分表扬"
-    //   },
-    //   {
-    //     "icon": "/image/manage.png",
-    //     "text": "管理奖扣"
-    //   },
-    //   {
-    //     "icon": "/image/push.png",
-    //     "text": "发布公告"
-    //   }
-    // ],
+    //管理应用
     listContent: [
       {
         "icon": "/image/nothing.png",
@@ -34,36 +17,7 @@ Page({
         "text": "奖扣日志"
       }
     ],
-    // listMain: [
-    //   {
-    //     "icon": "/image/task2.png",
-    //     "text": "悬赏任务"
-    //   },
-    //   {
-    //     "icon": "/image/test.png",
-    //     "text": "申报积分"
-    //   },
-    //   {
-    //     "icon": "/image/to.png",
-    //     "text": "爱心点赞"
-    //   },
-    //   {
-    //     "icon": "/image/free.png",
-    //     "text": "自由奖励"
-    //   },
-    //   {
-    //     "icon": "/image/app.png",
-    //     "text": "积分申诉"
-    //   },
-    //   {
-    //     "icon": "/image/mall.png",
-    //     "text": "积分商城"
-    //   },
-    //   {
-    //     "icon": "/image/gift.png",
-    //     "text": "积分抽奖"
-    //   }
-    // ],
+    //日常应用
     listMain: [],
 
     hidden: true,
@@ -152,6 +106,8 @@ Page({
       complete: () => {
       }
     })
+
+    this.getTopImage()
   },
 
   onContentClick(e) {
@@ -216,5 +172,29 @@ Page({
   },
   copy() {
     dd.navigateTo({ url: './to/index' })
+  },
+  getTopImage(){
+    dd.httpRequest({
+      url: app.globalData.domain + '/home/picture',
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        location: 1  //location 0:首页，1:工作台，2：积分商城
+      },
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+        console.log('successWorkTopImage----', res)
+        this.setData({
+          topImage: res.data.data.list[0].picUrl
+        })
+      },
+      fail: (res) => {
+        console.log('httpRequestFailHomeList---', res)
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+
+      },
+      complete: () => {
+        
+      }
+    })
   }
 })

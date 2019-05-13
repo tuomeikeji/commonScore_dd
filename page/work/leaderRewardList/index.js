@@ -6,20 +6,18 @@ Page({
     hasNextPage:true,
     pageSize:10,
     dataArray: [],
-    scrollTop:0,
-    // topIconShow:false,
-    noData:false
+    noData:false,
+    search: '',
+    active: false,
   },
   onShow() {
     this.getSystemInfoPage()
     this.loadInitData()
   },
-  // onPullDownRefresh(){
-  //   this.loadInitData()
-  // },
-  // onReachBottom() {
-  //   this.loadMoreData()
-  // },
+  onPullDownRefresh(){
+    this.loadInitData()
+  },
+ 
   loadInitData() {
     dd.showLoading({content: '加载中...'})
 
@@ -149,19 +147,46 @@ Page({
       }
     })
   },
-  scrollFun(e){
-    var that=this;
-    if(e.detail.scrollTop>100){
-      that.setData({
-        'topIconShow':true
-      })
-    }else{
-      that.setData({
-        'topIconShow': false
-      })
-    }
+  handleSearch(e) {
+    this.setData({
+      search: e.detail.value
+    })
+    //this.listShow2()
   },
-  scrollToTop() {
-    console.log("gotop")
-  }
+  clearSearch() {
+    this.setData({
+      active: false
+    })
+    dd.hideKeyboard()
+  },
+  focusSearch() {
+    this.setData({
+      active: true
+    })
+  },
+  blurSearch() {
+    this.setData({
+      active: false
+    })
+  },
+  doneSearch() {
+    //this.listShow2()
+    dd.hideKeyboard()
+  },
+
+  onItemClick({ index }) {
+    console.log('list点击', index)
+
+    var title = this.data.items[index].behaviorTitle
+    var content = this.data.items[index].behaviorContent
+    var type = this.data.items[index].typeId
+    var max = this.data.items[index].zuiDuoIntegral
+    var min = this.data.items[index].zuiShaoIntegral
+    var id = this.data.items[index].behaviorId
+    var url = `./details/index?title=${title}&content=${content}&type=${type}&max=${max}&min=${min}&id=${id}`
+
+    dd.navigateTo({
+      url: url
+    })
+  },
 })

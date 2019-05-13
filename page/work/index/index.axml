@@ -1,5 +1,7 @@
 <view class="page">
-  <top />
+  <view class="topImage">
+    <image src="{{topImage}}" mode="aspectFill" a:if="{{topImage.length>0}}"/>
+  </view>
   <view class="content">
     <view class="content-title">管理日志</view>
     <view class="content-list">

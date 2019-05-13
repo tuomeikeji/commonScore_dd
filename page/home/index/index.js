@@ -5,8 +5,8 @@ Page({
     items: [],
     data: {},
     first: {},
-
     num: 1, // 分页
+    topImage:'',
   },
   onShow() {
     dd.httpRequest({
@@ -31,29 +31,8 @@ Page({
       complete: () => {
       }
     })
-
-    // dd.httpRequest({
-    //   url: app.globalData.domain + '/home/indexFirst',
-    //   method: 'POST',
-    //   // headers: { 'Content-Type': 'application/json' },
-    //   dataType: 'json',
-    //   success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
-
-    //     console.log('successHomeFirst----', res)
-    //     this.setData({
-    //       first: res.data.data
-    //     })
-    //   },
-    //   fail: (res) => {
-    //     console.log('httpRequestFailHomeFirst----', res)
-    //     var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
-
-    //   },
-    //   complete: () => {
-    //   }
-    // })
-
     this.listShow()
+    this.getTopImage()
   },
   // onReachBottom() {
   //   this.listShow()
@@ -128,6 +107,31 @@ Page({
     dd.previewImage({
       current: e.target.dataset.index,
       urls: this.data.items.approvalImg1
+    })
+  },
+
+  getTopImage(){
+    dd.httpRequest({
+      url: app.globalData.domain + '/home/picture',
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        location: 0 //location 0:首页，1:工作台，2：积分商城
+      },
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+        console.log('successHomeTopImage----', res)
+        this.setData({
+          topImage: res.data.data.list[0].picUrl
+        })
+      },
+      fail: (res) => {
+        console.log('httpRequestFailHomeList---', res)
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+
+      },
+      complete: () => {
+        
+      }
     })
   }
 

@@ -1,5 +1,7 @@
 <view class="page" style="height: {{windowHeight - bottomHeight}}px">
-  <top />
+   <view class="topImage">
+    <image src="{{topImage}}" mode="aspectFill" a:if="{{topImage.length>0}}"/>
+  </view>
   <view class="content">
     <text class="content-left">
       <image src="/image/left.png" />

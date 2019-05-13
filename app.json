@@ -29,7 +29,8 @@
     "page/work/levelTest/index",
     "page/work/levelTest/levelTestDetail/index",
     "page/work/leaderRewardList/index",
-    
+    "page/work/leaderRewardList/details/index",
+
     "page/work/index/logs/index",
     "page/work/index/wait/index",
     "page/work/index/from/index",

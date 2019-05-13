@@ -41,6 +41,7 @@ Page({
     })
 
     this.showList()
+    this.getTopImage()
   },
 
   showList() {
@@ -293,5 +294,30 @@ Page({
     for (var k in o)
       if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
+  },
+
+  getTopImage(){
+    dd.httpRequest({
+      url: app.globalData.domain + '/home/picture',
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        location: 2  //location 0:首页，1:工作台，2：积分商城
+      },
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+        console.log('successMarketTopImage----', res)
+        this.setData({
+          topImage: res.data.data.list[0].picUrl
+        })
+      },
+      fail: (res) => {
+        console.log('httpRequestFailHomeList---', res)
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+
+      },
+      complete: () => {
+        
+      }
+    })
   }
 })
