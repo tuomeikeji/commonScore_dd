@@ -12,7 +12,8 @@ Page({
     },
     {
       title: '审批通过'
-    }]
+    }],
+    current: 0,
   },
   onShow() {
     this.listShow()
@@ -93,13 +94,15 @@ Page({
     switch (index) {
       case 0:
         this.setData({
-          status: 2
+          status: 2,
+          current: 0
         });
         this.listShow();
         break;
       case 1:
         this.setData({
-          status: 1
+          status: 1,
+          current: 1
         });
         this.listShow();
         break;

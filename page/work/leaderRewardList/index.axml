@@ -11,12 +11,15 @@
         <block a:for="{{dataArray}}" a:for-item="articles" a:for-index="dataArrayIndex" class="list-block">
           <block a:for="{{articles}}" a:for-item="item" a:for-index="index" class="list-block">
             <list-item
-              className="list-item"
-              key="item-{{index}}"
-              index="{{index}}"
-              thumb="{{item.userImg ? item.userImg : '/image/logo.png'}}"
-              multipleLine="{{true}}"
-              onClick="onItemClick"
+               className="list-item" 
+               key="item-{{index}}" 
+               index="{{index}}" 
+               last="{{index === (items.length - 1)}}" 
+               thumb="{{item.userImg ? item.userImg : '/image/logo.png'}}" 
+               arrow="{{false}}" 
+               align="{{item.align}}" 
+               onClick="onItemClick" 
+               multipleLine="{{true}}" wrap="{{true}}"
             >
               <text class="name">{{item.userName}}</text>
               <view class="brief">

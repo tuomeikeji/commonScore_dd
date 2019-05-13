@@ -53,7 +53,7 @@
       <text class="item-left">不过原因</text>
       <text class="item-right" style="padding-left: 35%;display: block;color: red">{{data.disapproveUndo ? data.disapproveUndo : '无'}}</text>
     </view>
-    <image class="image" a:for="{{data.approvalImg}}" src="{{item}}" onTap="preview" data-index="{{index}}" mode="aspectFill" />
+    <image class="image" a:if="{{data.approvalImg != ''}}" a:for="{{data.approvalImg}}" src="{{item}}" onTap="preview" data-index="{{index}}" mode="aspectFill" />
   </view>
   <view class="page-section-btns" a:if="{{status == 0 && !steps}}">
     <view>
