@@ -40,7 +40,7 @@ Page({
         userName:this.data.search
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
-        console.log('successInitData----', res)
+        console.log('InitData----', res)
 
         var articles =  res.data.data.list; // 接口中的data对应了一个数组，这里取名为 articles
         var totalDataCount = articles.length;
@@ -96,7 +96,7 @@ Page({
         userName:this.data.search
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
-        console.log('successMoreData----', res)
+        console.log('MoreData----', res)
         var articles = res.data.data.list; // 接口中的data对应了一个数组，这里取名为 articles
 
         // 计算当前共加载了多少条数据，来证明这种方式可以加载更多数据
@@ -118,12 +118,12 @@ Page({
         var hasNextPage = res.data.data.hasNextPage;
         
         if(!hasNextPage){
-          console.log("没有下一页=====",hasNextPage)
-          dd.showToast({
-            content:"无更多数据",
-            type: 'none',
-            duration: 2500
-          });
+          console.log("是否有下一页=====",hasNextPage)
+          // dd.showToast({
+          //   content:"无更多数据",
+          //   type: 'none',
+          //   duration: 2500
+          // });
           
           this.setData({
             hasNextPage: hasNextPage
@@ -160,7 +160,7 @@ Page({
         userName: this.data.search
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
-        console.log('successSearchInit----', res)
+        console.log('SearchInit----', res)
 
         var articles =  res.data.data.list; // 接口中的data对应了一个数组，这里取名为 articles
         var totalDataCount = articles.length;
@@ -173,7 +173,8 @@ Page({
             currentPage: currentPage,
             totalDataCount: totalDataCount,
             articles: articles,
-            noData : false
+            noData : false,
+            hasNextPage: res.data.data.hasNextPage
           })
 
           //是否有下一页数据
