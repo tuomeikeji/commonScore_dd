@@ -121,3 +121,11 @@ button {
 
 .topImage image{width: 100%;max-height: 140px;
   box-shadow: 0 0 2px #ccc;margin-bottom: 10px;}
+
+  .list-none {
+  font-weight: bolder;
+  font-size: 14px;
+  color: rgb(70, 173, 244);
+  text-align: center;
+  padding-top: 50%;
+}

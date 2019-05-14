@@ -21,4 +21,5 @@
       </swipe-action>
     </block>
   </list>
+  <!-- <view a:else class="list-none">暂无内容</view> -->
 </view>

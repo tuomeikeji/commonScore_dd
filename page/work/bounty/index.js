@@ -69,6 +69,7 @@ Page({
   },
 
   handleTabClick({ index }) {
+    console.log(index)
     switch (index) {
       case 0:
         this.setData({
