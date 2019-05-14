@@ -120,9 +120,12 @@ Page({
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
         console.log('successHomeTopImage----', res)
-        this.setData({
-          topImage: res.data.data.list[0].picUrl
-        })
+        if(res.data.data.list.length > 0){
+          this.setData({
+            topImage: res.data.data.list[0].picUrl
+          })
+        }
+        
       },
       fail: (res) => {
         console.log('failHomeTopImage---', res)
