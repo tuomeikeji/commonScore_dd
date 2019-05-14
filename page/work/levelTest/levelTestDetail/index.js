@@ -88,6 +88,7 @@ Page({
           content: '提交成功', // 文字内容
         })
         dd.navigateBack()
+        
       },
       fail: (res) => {
         console.log("httpRequestFailApp----", res)

@@ -70,6 +70,7 @@ Component({
         success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
 
           console.log('successWaitDetail----', res)
+          console.log('图片', res.data.data.approvalImg[0].length)
           var items = []
           if (res.data.data.integralTypeId == 4) {
             items.push({
