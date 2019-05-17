@@ -186,7 +186,7 @@ Page({
         sort: this.data.date1,
         status: this.data.date2,
         deptId: this.data.deptId,
-        remark: this.data.postId
+        postId: this.data.postId
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
         console.log('successApp----', res)
