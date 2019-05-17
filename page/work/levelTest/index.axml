@@ -13,7 +13,7 @@
         <view class="brief">
           <view class="brief-bottom">
             <!-- testPerNum:考核人數 -->
-            <text class="brief-bottom-left">{{item.shenQingFangShi == "0"?"每天一次":item.shenQingFangShi == "1"?"每月一次":"无限制"}}</text>
+            <text class="brief-bottom-left">{{item.shenQingFangShi == "0"?"一天一次":"仅限一次"}}</text>
             <text class="brief-bottom-right {{item.testStatus == '0'?'testStatus_n':'testStatus_y'}}">{{item.testStatus == '0'?"未考核":"已考核"}}</text>
           </view>
         </view>
