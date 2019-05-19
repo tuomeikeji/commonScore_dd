@@ -4,18 +4,18 @@ Page({
   data: {
     //管理应用
     listContent: [
-      {
-        "icon": "/image/nothing.png",
-        "text": "发布任务"
-      },
-      {
-        "icon": "/image/manage.png",
-        "text": "管理奖扣"
-      },
-      {
-        "icon": "/image/scoreList.png",
-        "text": "奖扣日志"
-      }
+      // {
+      //   "icon": "/image/nothing.png",
+      //   "text": "发布任务"
+      // },
+      // {
+      //   "icon": "/image/manage.png",
+      //   "text": "管理奖扣"
+      // },
+      // {
+      //   "icon": "/image/scoreList.png",
+      //   "text": "奖扣日志"
+      // }
     ],
     //日常应用
     listMain: [],
@@ -28,9 +28,41 @@ Page({
   onShow() {
     console.log('level', app.globalData.level)
     if (app.globalData.level != 'common' && app.globalData.level != 'admin' && app.globalData.level != 'competentLevel') {
+      //管理者账号登陆
       this.setData({
         hidden: false
       })
+
+      dd.httpRequest({
+      url: app.globalData.domain + '/deskIcon/find',
+      method: 'POST',
+      dataType: 'json',
+       data: {
+         type: 1, 
+      },
+      success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
+        console.log('successDesk1----', res)
+
+        var listContent = []
+        var lists = res.data.data
+        lists.forEach((item) => {
+          item.icon = item.yyImg
+          item.text = item.yyTitle
+
+          listContent.push(item)
+        })
+        this.setData({
+          listContent: listContent
+        })
+      },
+      fail: (res) => {
+        console.log("httpRequestFailDesk----", res)
+        var content = JSON.stringify(res); switch (res.error) {case 13: content = '连接超时'; break; case 12: content = '网络出错'; break; case 19: content = '访问拒绝'; } dd.alert({content: content, buttonText: '确定'});
+
+      },
+      complete: () => {
+      }
+    })
     }
 
     dd.httpRequest({
@@ -75,7 +107,7 @@ Page({
       }
     })
 
-    // 动态图标
+    // 员工动态图标 type: 0, 
     dd.httpRequest({
       url: app.globalData.domain + '/deskIcon/find',
       method: 'POST',
@@ -84,7 +116,7 @@ Page({
          type: 0, 
       },
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
-        console.log('successDesk----', res)
+        console.log('successDesk0----', res)
 
         var listMain = []
         var lists = res.data.data
