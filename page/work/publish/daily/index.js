@@ -178,7 +178,7 @@ Page({
         taskIntegral: points,
         // approvalImg: that.data.toFilePaths,
         remark: textarea,
-        integralTypeId: typeId,
+        integralTypeId: 1,
         
         title: approvalTitle,
         content: approvalContent,
