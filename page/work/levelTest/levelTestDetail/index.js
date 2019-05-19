@@ -4,6 +4,7 @@ Page({
   data: {
     options: {},
     loading: false,
+    disabled:false,
     items: [],
     levelId: "", //大题id
     shenQingFangShi: "", //申请方式 
@@ -53,6 +54,7 @@ Page({
 
     this.setData({
       loading: true,
+      disabled:true
     })
 
     var radioGroupJson = e.detail.value
@@ -83,11 +85,14 @@ Page({
       success: (res) => {if ((res.data.code != 0 && !res.data.code ) || res.data.code == 1001) { dd.showToast({ content: res.msg, duration: 3000 }); dd.reLaunch({ url: '/page/register/index/index' }); return}
 
         console.log('successApp----', res)
-        dd.showToast({
-          duration: 3000,
-          content: '提交成功', // 文字内容
+        dd.alert({
+          title: '',
+          content: '提交成功',
+	        buttonText:"确定",
+          success: () => {
+              dd.navigateBack()
+          }
         })
-        dd.navigateBack()
         
       },
       fail: (res) => {
@@ -96,7 +101,8 @@ Page({
       },
       complete: () => {
         this.setData({
-          loading: false
+          loading: false,
+          disabled:false
         })
       }
     })
